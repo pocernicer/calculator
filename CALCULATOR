@@ -1,0 +1,369 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner cs = new Scanner(System.in);
+        String y1 = "";//первый оперант
+        String y2 = "";//второй оперант
+        String vvod = cs.nextLine();//ввод примера в консоль
+        int x = 0;//какой оператор
+        int oper = 0;//идекс оператора
+        int l = vvod.length();//длина массива
+        int roa1 = 0;//римское или арабское 1 число
+        int roa2 = 0;//римское или арабское 2 число
+        char[] mass = new char[vvod.length()];//массив длиной l
+        int lol = 0;//кол-во оператоов
+        for (int i = 0; i < vvod.length(); i++) {//создаю массив из строки
+            mass[i] = vvod.charAt(i);
+        }
+        for (int i = 0; i < l; i++) {//считаю кол-во операторов
+            if (mass[i] == '+' || mass[i] == '-' || mass[i] == '/' || mass[i] == '*') {
+                lol++;
+            }
+        }
+        if (lol > 1) {
+            System.out.println("throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
+            System.exit(0);
+        }
+        if (lol == 0) {
+            System.out.println("throws Exception //т.к. строка не является математической операцией");
+            System.exit(0);
+        }
+        for (int i = 0; i < l; i++) {//индекс оператора
+            if (mass[i] == '+' || mass[i] == '-' || mass[i] == '/' || mass[i] == '*') {
+                oper = i;
+            }
+        }
+        switch (mass[oper]) {//какой оператор
+            case '+':
+                x = 1;
+                break;
+            case '-':
+                x = 2;
+                break;
+            case '*':
+                x = 3;
+                break;
+            case '/':
+                x = 4;
+                break;
+        }
+        for (int i = 0; i < oper; i++) {//определяю первый операнд
+            y1 = y1 + mass[i];
+
+        }
+        for (int i = 0; l > i; i++) {    //определяю второй операнд
+            if (i > oper) {
+                y2 = y2 + mass[i];
+            }
+        }
+        String u1 = y1.trim();//убрать пробелы в начале и конце
+        String u2 = y2.trim();
+         char t1 = u1.charAt(0);//1 символ 1 операнда
+         char t2 = u2.charAt(0);//1 символ 2 операнда
+        switch (t1){
+            case 'I':
+                roa1 =1;
+                break;
+            case 'V':
+                roa1 =1;
+                break;
+            case 'X':
+                roa1 =1;
+                break;
+            case '0':
+                roa1 =2;
+                break;
+            case '1':
+                roa1 =2;
+                break;
+            case '2':
+                roa1 =2;
+                break;
+            case '3':
+                roa1 =2;
+                break;
+            case '4':
+                roa1 =2;
+                break;
+            case '5':
+                roa1 =2;
+                break;
+            case '6':
+                roa1 =2;
+                break;
+            case '7':
+                roa1 =2;
+                break;
+            case '8':
+                roa1 =2;
+                break;
+            case '9':
+                roa1 =2;
+                break;
+        }
+        switch (t2) {
+            case 'I':
+                roa2 = 1;
+                break;
+            case 'V':
+                roa2 = 1;
+                break;
+            case 'X':
+                roa2 = 1;
+                break;
+            case '0':
+                roa2 = 2;
+                break;
+            case '1':
+                roa2 = 2;
+                break;
+            case '2':
+                roa2 = 2;
+                break;
+            case '3':
+                roa2 = 2;
+                break;
+            case '4':
+                roa2 = 2;
+                break;
+            case '5':
+                roa2 = 2;
+                break;
+            case '6':
+                roa2 = 2;
+                break;
+            case '7':
+                roa2 = 2;
+                break;
+            case '8':
+                roa2 = 2;
+                break;
+            case '9':
+                roa2 = 2;
+                break;
+        }
+        if(roa1 == 2& roa2==2){
+            int a1 = Integer.parseInt(u1);//первый операнд в int
+            int a2 = Integer.parseInt(u2);//второй операнд в int
+            switch (x) {            //вычисление
+                case 1:
+                    System.out.println(a1 + a2);
+                    break;
+                case 2:
+                    System.out.println(a1 - a2);
+                    break;
+                case 3:
+                    System.out.println(a1 * a2);
+                    break;
+                case 4:
+                    System.out.println(a1 / a2);
+                    break;
+            }
+        }
+
+
+        else if (roa1 ==1 & roa2==1) {
+            int sum1 = 0;//1 число
+            int sum2 =0;//2 число
+            int l1 = u1.length();
+            int l2 = u2.length();
+            char[] m1 = new char[u1.length()];
+            char[] m2 = new char[u2.length()];
+            for (int i = 0; i < u1.length(); i++) {
+                m1[i] = u1.charAt(i);
+                }
+            for (int i = 0; i < u2.length(); i++) {
+                m2[i] = u2.charAt(i);
+            }
+            if (l1==1){// 1-ый операнд
+                if (m1[0]=='I'){
+                    sum1 = 1;
+                }
+                else if (m1[0]=='V'){
+                    sum1=5;
+                }
+                else if (m1[0]=='X'){
+                    sum1=10;
+                }
+
+            }
+            else if (l1==2) {//второй операнд
+                if (m1[1]=='I'&m1[0]=='I'){
+                    sum1 = 2;
+                }
+                else if (m1[0]=='I'&m1[1]=='V'){
+                    sum1=4;
+                }
+                else if (m1[1]=='X'&m1[0]=='I'){
+                    sum1=9;
+                }
+                else if (m1[0]=='V'&m1[1]=='I') {
+                    sum1=6;
+
+                }
+            }
+            else if (l1 ==3) {
+                if (m1[0]=='I'){
+                    sum1 = 3;
+                }
+                else if (m1[0]=='V'){
+                    sum1=7;
+                }
+
+            }
+            else {
+                sum1 =8;
+            }
+            if (l2==1){
+                if (m2[0]=='I'){
+                    sum2 = 1;
+                }
+                else if (m2[0]=='V'){
+                    sum2=5;
+                }
+                else if (m2[0]=='X'){
+                    sum2=10;
+                }
+
+            }
+            else if (l2==2) {
+                if (m2[1]=='I'&m2[0]=='I'){
+                    sum2 = 2;
+                }
+                else if (m2[0]=='I'& m2[1]=='V'){
+                    sum2=4;
+                }
+                else if (m2[1]=='X'){
+                    sum2=9;
+                }
+                else if (m2[0]=='V'&m2[1]=='I') {
+                    sum2=6;
+
+                }
+            }
+            else if (l2 ==3) {
+                if (m2[0]=='I'){
+                    sum2 = 3;
+                }
+                else if (m2[0]=='V'){
+                    sum2=7;
+                }
+
+            }
+            else {
+                sum2 =8;
+            }
+
+            int rsum = 0;//результат вычисления римских цифр
+
+            switch (x) {            //вычисление
+                case 1:
+                    rsum=sum1+sum2;
+                    break;
+                case 2:
+                    if(sum1<sum2){
+                        System.out.println("throws Exception //т.к. в римской системе нет отрицательных чисел");
+                    }
+                    else {
+                        rsum=sum1-sum2;
+                    }
+                    break;
+                case 3:
+                    rsum=sum1*sum2;
+                    break;
+                case 4:
+                    rsum=sum1/sum2;
+                    break;
+
+            }
+
+
+            int c1 = rsum/10;//кол-во десятков
+            int c2 = rsum%10;//кол-во единиц
+            String vi =new String();
+
+
+            switch (c1){
+                case 0:
+                    vi = "";
+                    break;
+                case 1:
+                    vi="X";
+                    break;
+                case 2:
+                    vi = "XX";
+                    break;
+                case 3:
+                    vi = "XXX";
+                    break;
+                case 4:
+                    vi = "XL";
+                    break;
+                case 5:
+                    vi = "L";
+                    break;
+                case 6:
+                    vi = "LX";
+                    break;
+                case 7:
+                    vi = "LXX";
+                    break;
+                case 8:
+                    vi = "LXXX";
+                    break;
+                case 9:
+                    vi = "XC";
+                    break;
+                case 10:
+                    vi = "C";
+                    break;
+
+
+            }
+            switch (c2){
+                case 0:
+                    vi=vi+"";
+                    break;
+                case 1:
+                    vi=vi+"I";
+                    break;
+                case 2:
+                    vi=vi+"II";
+
+                    break;
+                case 3:
+                    vi=vi+"III";
+                    break;
+                case 4:
+                    vi=vi+"IV";
+                    break;
+                case 5:
+                    vi=vi+"V";
+                    break;
+                case 6:
+                    vi=vi+"VI";
+                    break;
+                case 7:
+                    vi=vi+"VII";
+                    break;
+                case 8:
+                    vi=vi+"VIII";
+                    break;
+                case 9:
+                    vi=vi+"IX";
+                    break;
+
+            }
+            System.out.println(vi);
+
+
+
+        } else {
+            System.out.println("throws Exception //т.к. используются одновременно разные системы счисления");
+
+        }
+
+
+    }
+}
